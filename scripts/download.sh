@@ -20,5 +20,8 @@ wget "ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/viral.*.protein.gpff.gz" -
 #HMGI Stool - accessed 12/5/2016; last updated 2011
 wget "ftp://public-ftp.hmpdacc.org/HMGI/stool/*.with_fasta.gff3.bz2" -P $HMGI_DATA -nv -a downoad.log
 
+#HMGI ref
+wget "http://downloads.hmpdacc.org/data/reference_genomes/body_sites/Gastrointestinal_tract.pep.fsa" -P $HMGI_DATA -nv -a downoad.log
+
 #cRAPome - accessed 12/6/2016; last updated 01/30/2015
 wget "ftp://ftp.thegpm.org/fasta/crap/crap.fasta" -P $CRAPOME_DATA -nv -a download.log
