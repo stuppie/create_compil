@@ -18,8 +18,6 @@ for FILE in $REFSEQ_DATA/*.gpff.gz; do
   python3 parse_refseq.py $FILE $OUT
 done
 
-exit
-
 # crapome
 python3 parse_crapome.py $CRAPOME_DATA $PROCESSED_DATA
 

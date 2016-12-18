@@ -7,8 +7,8 @@ wget "ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/
 
 #MetaHit-Qin, et al 2010 - accessed 12/5/2016; last updated 06/2009
 #wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523.fa.gz" -P $METAHIT_DATA -nv -a download.log
-#wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523_annotation.fa.gz" -P $METAHIT_DATA -nv -a download.log
-#wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523_taxonomic.fa.gz" -P $METAHIT_DATA -nv -a download.log
+wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523_annotation.gz" -P $METAHIT_DATA -nv -a download.log
+wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523_taxonomic.gz" -P $METAHIT_DATA -nv -a download.log
 wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/frequent_microbe_proteins.fasta.gz" -P $METAHIT_DATA -nv -a download.log
 
 #RefSeq - accessed 12/5/2016; last updated 11/3/2016
