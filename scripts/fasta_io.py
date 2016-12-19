@@ -23,8 +23,8 @@ def parser(f):
 
 
 class Writer:
-    def __init__(self, f):
-        self.f = str_to_handle(f, 'w')
+    def __init__(self, f, mode='w'):
+        self.f = str_to_handle(f, mode)
 
     def write(self, defline, sequence):
         self.f.write(">" + defline + "\n")

@@ -9,6 +9,12 @@ cd "$(dirname "$0")"
 
 mkdir -p $PROCESSED_DATA
 
+# food
+for FILE in $FOOD_DATA/*.fasta.gz; do
+  echo $FILE
+  python parse_food.py $FILE $PROCESSED_DATA
+done
+
 
 # hmgi srs
 for FILE in $HMGI_DATA/*.gff3.bz2; do

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 set -e
-source "$(dirname "$0")/params.sh"
+source "params.sh"
 
 #UniProt - accessed 11/30/2016; last updated 11/30/2016
 wget "ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/taxonomic_divisions/uniprot_*.dat.gz" -P $UNIPROT_DATA -nv -a download.log
@@ -25,3 +25,22 @@ wget "http://downloads.hmpdacc.org/data/reference_genomes/body_sites/Gastrointes
 
 #cRAPome - accessed 12/6/2016; last updated 01/30/2015
 wget "ftp://ftp.thegpm.org/fasta/crap/crap.fasta" -P $CRAPOME_DATA -nv -a download.log
+
+# food
+#    mouse          rat           wheat          barley        rice         maize         Pig          Cow           Chicken
+ids=("UP000000589" "UP000002494" "UP000019116" "UP000011116" "UP000059680" "UP000007305" "UP000008227" "UP000009136" "UP000000539")
+taxids=(10090       10116         4565          112509        39947         4577          9823          9913          9031)
+for i in ${!ids[*]}; do
+  echo ${ids[i]}
+  wget "http://www.uniprot.org/uniprot/?query=proteome:${ids[i]}&compress=yes&force=true&format=fasta" -nv -a downoad.log -O $FOOD_DATA/${taxids[i]}.fasta.gz
+done
+
+#peptide calibration
+echo "P00000|Pierce Peptide Retention Time Calibration Mixture|calibration||
+SSAAPPPPPRGISNEGQNASIKHVLTSIGEKDIPVPKPKIGDYAGIKTASEFDSAIAQDKSAAGAFGPELSRELGQSGVDTYLQTKGLILVGGYGTR
+GILFVGSGVSGGEEGARSFANQPLEVVYSKLTILEELRNGFILDGFPRELASGLSFPVGFKLSSEAPALFQFDLK" > $PROCESSED_DATA/peptide_calibration.fasta
+
+# Mouse Gut Metagenome Xiao 2015
+wget "ftp://climb.genomics.cn/pub/10.5524/100001_101000/100114/Genecatalog/184sample_2.6M.GeneSet.pep.gz" -P $MGM_DATA -nv -a downoad.log
+# taxonomy
+wget "ftp://climb.genomics.cn/pub/10.5524/100001_101000/100114/Annotation/184sample.uniq_gene.NR.anno.merge.gz" -P $MGM_DATA -nv -a downoad.log
