@@ -1,10 +1,15 @@
 #!/usr/bin/env python3
 
 """
-annotation and fasta file have on IDs in common??!!?
 
-frequent_microbe_proteins.fasta.gz
+184sample.uniq_gene.NR.anno.merge.gz
+29_GL0004906    1/1     Clostridiales   order   root|cellular organisms|Bacteria|Firmicutes|Clostridia|Clostridiales    no rank|no rank|superkingdom|phylum|class|order
 
+184sample_2.6M.GeneSet.pep.gz
+>S-Fe10_GL0000007  [gene]  locus=scaffold65241_2:873:1022:+ [Complete] codon-table.11
+
+MmCAG2geneID.txt.gz
+MmMGS:0001 MH-0-5_GL0123062
 
 """
 
@@ -15,14 +20,3 @@ import gzip
 from fasta_io import parser, Writer
 
 database = "mgm"
-data_root = os.path.expanduser(sys.argv[1])
-f = gzip.open(os.path.join(data_root, "frequent_microbe_proteins.fasta.gz"), 'rt', encoding='utf8')
-f_out = os.path.join(os.path.expanduser(sys.argv[2]), "metahit.fasta")
-writer = Writer(f_out)
-
-for doc in parser(f):
-    db_accession = name = doc['defline']
-    defline = "{}|{}|{}||".format(db_accession, name, database)
-    writer.write(defline, doc['sequence'])
-
-writer.close()

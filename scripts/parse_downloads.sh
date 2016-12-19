@@ -15,7 +15,6 @@ for FILE in $FOOD_DATA/*.fasta.gz; do
   python parse_food.py $FILE $PROCESSED_DATA
 done
 
-
 # hmgi srs
 for FILE in $HMGI_DATA/*.gff3.bz2; do
   echo $FILE
@@ -54,3 +53,4 @@ for FILE in $UNIPROT_DATA/*.dat.gz; do
 done
 
 
+## TODO: MGM_DATA

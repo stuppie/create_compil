@@ -44,3 +44,4 @@ GILFVGSGVSGGEEGARSFANQPLEVVYSKLTILEELRNGFILDGFPRELASGLSFPVGFKLSSEAPALFQFDLK" > $
 wget "ftp://climb.genomics.cn/pub/10.5524/100001_101000/100114/Genecatalog/184sample_2.6M.GeneSet.pep.gz" -P $MGM_DATA -nv -a downoad.log
 # taxonomy
 wget "ftp://climb.genomics.cn/pub/10.5524/100001_101000/100114/Annotation/184sample.uniq_gene.NR.anno.merge.gz" -P $MGM_DATA -nv -a downoad.log
+wget "ftp://climb.genomics.cn/pub/10.5524/100001_101000/100114/MGS/MmCAG2geneID.txt.gz" -P $MGM_DATA -nv -a downoad.log
