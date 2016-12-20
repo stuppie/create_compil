@@ -2,7 +2,9 @@
 
 """
 usage:
-parse_uniprot.py in_file out_file
+parse_uniprot.py in_file
+
+writes to stdout
 
 """
 
@@ -14,7 +16,7 @@ import gzip
 
 database = os.path.split(sys.argv[1])[1].split(".")[0]
 parser = SwissProt.parse(gzip.open(sys.argv[1]))
-writer = Writer(sys.argv[2])
+writer = Writer(sys.stdout)
 while True:
     try:
         record = next(parser)

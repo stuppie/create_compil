@@ -2,7 +2,19 @@
 
 """
 usage:
-parse_refseq.py in_file out_file
+parse_refseq.py in_file
+in_file: full path to gzipped genbank file
+
+prints to stdout
+
+
+input:
+genbank gff file
+
+
+output:
+>WP_004975290.1|hypothetical protein [Haloferax gibbonsii]|refseq_archaea|taxid:35746|taxon=35746,CDD=302758,CDD=279871,CDD=238088
+MSRTILCVDNADRVSSVAAAIDAEETFEAVEATTVEAARTALDERAVVCVVTGYELDDGSGLEIARAIRETAPQTPCVLFTDVSPGAIDTASFEEVLLEYINRDLPDARDRLTYVVDDVINHSAQVGFLKPDDEEERLDALASYDIDELPIQESFDRLTDLIASHFGTAIAFIGLVEAEAEDIVACHGGDWDRLTREDTICTHSMLQEDVMVVEDIREDKRFSENPHLSNLGIRSYAGANMTTPDGHVIGQVCLIDDVVRTYDAEERRELQQFAETAMEVLELRQSVLESRAAPAEVGQ
 
 """
 
@@ -17,7 +29,7 @@ from Bio import SeqIO
 database = "refseq_" + os.path.split(sys.argv[1])[1].split(".")[0]
 f = sys.argv[1]
 parser = SeqIO.parse(gzip.open(f, 'rt', encoding='utf8'), 'gb')
-writer = Writer(sys.argv[2])
+writer = Writer(sys.stdout)
 
 for record in parser:
     try:

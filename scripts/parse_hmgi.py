@@ -1,8 +1,23 @@
 #!/usr/bin/env python3
 
-"""input file looks like
-...
+"""
+parse_hmgi.py HMGI_DATA
 
+HMGI_DATA: path to folder containing "Gastrointestinal_tract.pep.fsa". will be used to store temp files
+
+writes to stdout
+
+input file looks like:
+>CW1_2700 transcriptional regulator, LuxR family [Bacteroides xylanisolvens SD CC 2a]
+MKNNEVVRIAIAETSVIIRGGLTAALKRLSNVKVQPIELLSVEALHDCVRTQCPEMLIVN
+PAFGDYFDVAKFREEISGKRIRLIALVTSFVDASLLGKYDESISIFDDLETLSKKIAGLL
+NVVSEEEGMDNQDTLSQREKEIVICVVKGMTNKEIAEKLFLSIHTVITHRRNISKKLQIH
+SAAGLTIYAIVNKLVALSDVKDL
+
+
+output:
+>CW1_2700|transcriptional regulator, LuxR family [Bacteroides xylanisolvens SD CC 2a]|hmgi_ref|taxid:702444|
+MKNNEVVRIAIAETSVIIRGGLTAALKRLSNVKVQPIELLSVEALHDCVRTQCPEMLIVNPAFGDYFDVAKFREEISGKRIRLIALVTSFVDASLLGKYDESISIFDDLETLSKKIAGLLNVVSEEEGMDNQDTLSQREKEIVICVVKGMTNKEIAEKLFLSIHTVITHRRNISKKLQIHSAAGLTIYAIVNKLVALSDVKDL
 
 """
 
@@ -17,7 +32,6 @@ import pickle
 
 database = "hmgi_ref"
 data_root = os.path.expanduser(sys.argv[1])
-f_out = os.path.join(os.path.expanduser(sys.argv[2]), "hmp_ref_GI.fasta")
 
 def parse_brackets(string):
     """Generate parenthesized contents in string as pairs (level, contents).
@@ -66,7 +80,7 @@ else:
         pickle.Pickler(f).dump(taxdict)
 
 
-writer = Writer(f_out)
+writer = Writer(sys.stdout)
 
 with open(os.path.join(data_root, "Gastrointestinal_tract.pep.fsa")) as f:
     p = parser(f)

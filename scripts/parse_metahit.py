@@ -1,26 +1,34 @@
 #!/usr/bin/env python3
 
 """
-annotation and fasta file have on IDs in common??!!?
+parse_metahit.py
+reads from stdin
+writes to stdout
 
-frequent_microbe_proteins.fasta.gz
 
+Uses file: frequent_microbe_proteins.fasta.gz
+looks like:
+
+>1000000853.C707.G1
+MHISYQPLWDTLKERGMRKEDLRLSAGLTTNMIANMGKGKHISMETLLRI
+CKALNCGILNVIELEHDEEAEISN
+
+
+Output:
+>1000000853.C707.G1|1000000853.C707.G1|metahit||
+MHISYQPLWDTLKERGMRKEDLRLSAGLTTNMIANMGKGKHISMETLLRICKALNCGILNVIELEHDEEAEISN
 
 """
+#TODO: annotation and fasta file have on IDs in common??!!?
 
 
-import os
 import sys
-import gzip
 from fasta_io import parser, Writer
 
 database = "metahit"
-data_root = os.path.expanduser(sys.argv[1])
-f = gzip.open(os.path.join(data_root, "frequent_microbe_proteins.fasta.gz"), 'rt', encoding='utf8')
-f_out = os.path.join(os.path.expanduser(sys.argv[2]), "metahit.fasta")
-writer = Writer(f_out)
+writer = Writer(sys.stdout)
 
-for doc in parser(f):
+for doc in parser(sys.stdin):
     db_accession = name = doc['defline']
     defline = "{}|{}|{}||".format(db_accession, name, database)
     writer.write(defline, doc['sequence'])

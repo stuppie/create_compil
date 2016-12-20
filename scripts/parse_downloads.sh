@@ -4,15 +4,14 @@
 set -e
 shopt -s nullglob
 source params.sh
-CWD=`pwd`
-cd "$(dirname "$0")"
 
 mkdir -p $PROCESSED_DATA
 
 # food
+rm $PROCESSED_DATA/food.fasta
 for FILE in $FOOD_DATA/*.fasta.gz; do
   echo $FILE
-  python parse_food.py $FILE $PROCESSED_DATA
+  python parse_food.py $FILE >> $PROCESSED_DATA/food.fasta
 done
 
 # hmgi srs
@@ -21,23 +20,23 @@ for FILE in $HMGI_DATA/*.gff3.bz2; do
   FN=$(basename "${FILE}")
   FN="${FN%.gff3.bz2}.fasta"
   OUT=$PROCESSED_DATA/$FN
+  echo $OUT
   bzcat $FILE | python3 parse_hmgi_srs.py > $OUT
 done
 
 # hmgi ref
-python3 parse_hmgi.py $HMGI_DATA $PROCESSED_DATA
+python3 parse_hmgi.py $HMGI_DATA > $PROCESSED_DATA/hmp_ref_GI.fasta
 
 # metahit
 echo metahit
-python3 parse_metahit.py $METAHIT_DATA $PROCESSED_DATA
+zcat $METAHIT_DATA/frequent_microbe_proteins.fasta.gz | python3 parse_metahit.py  > $PROCESSED_DATA/metahit.fasta
 
 # refseq
 for FILE in $REFSEQ_DATA/*.gpff.gz; do
   echo $FILE
   FN=$(basename "${FILE}")
   FN="${FN%.gpff.gz}.fasta"
-  OUT=$PROCESSED_DATA/$FN
-  python3 parse_refseq.py $FILE $OUT
+  python3 parse_refseq.py $FILE > $PROCESSED_DATA/$FN
 done
 
 # crapome
@@ -48,9 +47,8 @@ for FILE in $UNIPROT_DATA/*.dat.gz; do
   echo $FILE
   FN=$(basename "${FILE}")
   FN="${FN%.dat.gz}.fasta"
-  OUT=$ROOT/processed/$FN
-  python3 parse_uniprot.py $FILE $OUT
+  python3 parse_uniprot.py $FILE > $PROCESSED_DATA/$FN
 done
 
-
-## TODO: MGM_DATA
+# mouse gut microbiome
+python3 parse_mgm.py $MGM_DATA > $PROCESSED_DATA/mgm.fasta
