@@ -30,6 +30,7 @@ wget "http://downloads.hmpdacc.org/data/reference_genomes/body_sites/Gastrointes
 wget "ftp://ftp.thegpm.org/fasta/crap/crap.fasta" -P $CRAPOME_DATA $WGET_PARAMS
 
 # food
+mkdir -p $FOOD_DATA
 #    mouse          rat           wheat          barley        rice         maize         Pig          Cow           Chicken
 ids=("UP000000589" "UP000002494" "UP000019116" "UP000011116" "UP000059680" "UP000007305" "UP000008227" "UP000009136" "UP000000539")
 taxids=(10090       10116         4565          112509        39947         4577          9823          9913          9031)
@@ -48,3 +49,8 @@ wget "ftp://climb.genomics.cn/pub/10.5524/100001_101000/100114/MGS/MmCAG2geneID.
 echo "P00000|Pierce Peptide Retention Time Calibration Mixture|calibration||
 SSAAPPPPPRGISNEGQNASIKHVLTSIGEKDIPVPKPKIGDYAGIKTASEFDSAIAQDKSAAGAFGPELSRELGQSGVDTYLQTKGLILVGGYGTR
 GILFVGSGVSGGEEGARSFANQPLEVVYSKLTILEELRNGFILDGFPRELASGLSFPVGFKLSSEAPALFQFDLK" > $PROCESSED_DATA/peptide_calibration.fasta
+
+# IGC
+# http://meta.genomics.cn/meta/dataTools
+# ftp://climb.genomics.cn/pub/10.5524/100001_101000/100064/1.GeneCatalogs/IGC.pep.gz
+# ftp://climb.genomics.cn/pub/10.5524/100001_101000/100064/3.IGC.AnnotationInfo/IGC.annotation_OF.summary.gz
