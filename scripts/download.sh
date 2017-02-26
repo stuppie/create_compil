@@ -6,28 +6,15 @@ source "params.sh"
 #WGET_PARAMS="-nv -a download.log -N"
 WGET_PARAMS="-N"
 
+## *** updated regurlarly ****
 #UniProt - accessed 11/30/2016; last updated 11/30/2016
 wget "ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/taxonomic_divisions/uniprot_*.dat.gz" -P $UNIPROT_DATA $WGET_PARAMS
-
-#MetaHit-Qin, et al 2010 - accessed 12/5/2016; last updated 06/2009
-wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523_annotation.gz" -P $METAHIT_DATA $WGET_PARAMS
-wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523_taxonomic.gz" -P $METAHIT_DATA $WGET_PARAMS
-wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/frequent_microbe_proteins.fasta.gz" -P $METAHIT_DATA $WGET_PARAMS
 
 #RefSeq - accessed 12/5/2016; last updated 11/3/2016
 wget "ftp://ftp.ncbi.nlm.nih.gov/refseq/release/bacteria/bacteria.nonredundant*.protein.gpff.gz" -P $REFSEQ_DATA $WGET_PARAMS
 wget "ftp://ftp.ncbi.nlm.nih.gov/refseq/release/archaea/archaea.nonredundant*.protein.gpff.gz" -P $REFSEQ_DATA $WGET_PARAMS
 wget "ftp://ftp.ncbi.nlm.nih.gov/refseq/release/fungi/fungi.*.protein.gpff.gz" -P $REFSEQ_DATA $WGET_PARAMS
 wget "ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/viral.*.protein.gpff.gz" -P $REFSEQ_DATA $WGET_PARAMS
-
-#HMGI Stool - accessed 12/5/2016; last updated 2011
-wget "ftp://public-ftp.hmpdacc.org/HMGI/stool/*.with_fasta.gff3.bz2" -P $HMGI_DATA $WGET_PARAMS
-
-#HMGI ref
-wget "http://downloads.hmpdacc.org/data/reference_genomes/body_sites/Gastrointestinal_tract.pep.fsa" -P $HMGI_DATA $WGET_PARAMS
-
-#cRAPome - accessed 12/6/2016; last updated 01/30/2015
-wget "ftp://ftp.thegpm.org/fasta/crap/crap.fasta" -P $CRAPOME_DATA $WGET_PARAMS
 
 # food
 mkdir -p $FOOD_DATA
@@ -38,6 +25,22 @@ for i in ${!ids[*]}; do
   echo ${ids[i]}
   wget "http://www.uniprot.org/uniprot/?query=proteome:${ids[i]}&compress=yes&force=true&format=fasta" -O $FOOD_DATA/${taxids[i]}.fasta.gz $WGET_PARAMS
 done
+
+## *** never updated ****
+
+#MetaHit-Qin, et al 2010 - accessed 12/5/2016; last updated 06/2009
+wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523_annotation.gz" -P $METAHIT_DATA $WGET_PARAMS
+wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523_taxonomic.gz" -P $METAHIT_DATA $WGET_PARAMS
+wget "http://www.bork.embl.de/~arumugam/Qin_et_al_2010/frequent_microbe_proteins.fasta.gz" -P $METAHIT_DATA $WGET_PARAMS
+
+#HMGI Stool - accessed 12/5/2016; last updated 2011
+wget "ftp://public-ftp.hmpdacc.org/HMGI/stool/*.with_fasta.gff3.bz2" -P $HMGI_DATA $WGET_PARAMS
+
+#HMGI ref
+wget "http://downloads.hmpdacc.org/data/reference_genomes/body_sites/Gastrointestinal_tract.pep.fsa" -P $HMGI_DATA $WGET_PARAMS
+
+#cRAPome - accessed 12/6/2016; last updated 01/30/2015
+wget "ftp://ftp.thegpm.org/fasta/crap/crap.fasta" -P $CRAPOME_DATA $WGET_PARAMS
 
 # Mouse Gut Metagenome Xiao 2015
 wget "ftp://climb.genomics.cn/pub/10.5524/100001_101000/100114/Genecatalog/184sample_2.6M.GeneSet.pep.gz" -P $MGM_DATA $WGET_PARAMS
@@ -50,7 +53,12 @@ echo "P00000|Pierce Peptide Retention Time Calibration Mixture|calibration||
 SSAAPPPPPRGISNEGQNASIKHVLTSIGEKDIPVPKPKIGDYAGIKTASEFDSAIAQDKSAAGAFGPELSRELGQSGVDTYLQTKGLILVGGYGTR
 GILFVGSGVSGGEEGARSFANQPLEVVYSKLTILEELRNGFILDGFPRELASGLSFPVGFKLSSEAPALFQFDLK" > $PROCESSED_DATA/peptide_calibration.fasta
 
+# HMP2
+# pass:
+~/.aspera/connect/bin/ascp -l 100M -QT gstupp@aspera.ihmpdcc.org:/hhs/genome/microbiome/wgs/analysis/hmasm/v2/ $HMP2_DATA
+~/.aspera/connect/bin/ascp -l 100M -QT gstupp@aspera.ihmpdcc.org:/hhs/genome/microbiome/wgs/analysis/hmgi/v2/ $HMP2_DATA
+
 # IGC
 # http://meta.genomics.cn/meta/dataTools
-# ftp://climb.genomics.cn/pub/10.5524/100001_101000/100064/1.GeneCatalogs/IGC.pep.gz
-# ftp://climb.genomics.cn/pub/10.5524/100001_101000/100064/3.IGC.AnnotationInfo/IGC.annotation_OF.summary.gz
+wget "ftp://climb.genomics.cn/pub/10.5524/100001_101000/100064/1.GeneCatalogs/IGC.pep.gz" -P $IGC_DATA $WGET_PARAMS
+wget "ftp://climb.genomics.cn/pub/10.5524/100001_101000/100064/3.IGC.AnnotationInfo/IGC.annotation_OF.summary.gz" -P $IGC_DATA $WGET_PARAMS

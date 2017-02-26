@@ -1,0 +1,46 @@
+HMP Reference Genomes from GI
+http://downloads.hmpdacc.org/data/reference_genomes/body_sites/Gastrointestinal_tract.pep.fsa
+Information about strains in: HMRGD.csv
+
+HMP Metagenome
+ftp://public-ftp.hmpdacc.org/HMGI/stool/*with_fasta.gff3.bz2
+139 individual SRS files.
+
+MetaHit
+http://www.bork.embl.de/~arumugam/Qin_et_al_2010/
+http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523.fa.gz
+http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523_annotation.gz
+http://www.bork.embl.de/~arumugam/Qin_et_al_2010/BGI_GeneSet20090523_taxonomic.gz
+http://www.bork.embl.de/~arumugam/Qin_et_al_2010/frequent_microbe_proteins.fasta.gz
+
+UniProt
+ftp://ftp.uniprot.org/pub/databases/uniprot/current_release/knowledgebase/taxonomic_divisions/
+uniprot_sprot_archaea.dat.gz
+uniprot_sprot_bacteria.dat.gz
+uniprot_sprot_fungi.dat.gz
+uniprot_sprot_human.dat.gz
+uniprot_sprot_viruses.dat.gz
+uniprot_trembl_archaea.dat.gz
+uniprot_trembl_bacteria.dat.gz
+uniprot_trembl_fungi.dat.gz
+uniprot_trembl_human.dat.gz
+uniprot_trembl_viruses.dat.gz
+
+cRAPome
+ftp://ftp.thegpm.org/fasta/cRAP/crap.fasta
+
+Refseq
+Downloaded nonredundant databases for bacteria and archea
+for more info see: http://www.ncbi.nlm.nih.gov/refseq/about/nonredundantproteins/
+ftp://ftp.ncbi.nlm.nih.gov/refseq/release/bacteria/bacteria.nonredundant*.protein.gpff.gz
+ftp://ftp.ncbi.nlm.nih.gov/refseq/release/archea/archea.nonredundant*.protein.gpff.gz
+ftp://ftp.ncbi.nlm.nih.gov/refseq/release/fungi/*.protein.gpff.gz
+ftp://ftp.ncbi.nlm.nih.gov/refseq/release/viral/*.protein.gpff.gz
+
+
+IGC (I think this includes metahit, might want to check this)
+ftp://climb.genomics.cn/pub/10.5524/100001_101000/100064/1.GeneCatalogs/IGC.pep.gz
+ftp://climb.genomics.cn/pub/10.5524/100001_101000/100064/3.IGC.AnnotationInfo/IGC.annotation_OF.summary.gz
+
+HMP2
+aspera shit
