@@ -44,3 +44,4 @@ ftp://climb.genomics.cn/pub/10.5524/100001_101000/100064/3.IGC.AnnotationInfo/IG
 
 HMP2
 aspera shit
+sample info through email...

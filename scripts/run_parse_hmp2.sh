@@ -27,6 +27,3 @@ hmp2
 wc -l jobqueue
 
 wait
-
-OUT=$OUT_DIR/hmp2.fa.gz
-cat $HMP2_DATA/*.fa.gz > $OUT

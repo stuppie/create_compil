@@ -79,6 +79,14 @@ hmgi_ref
 metahit
 crapome
 mouse_gut_microbiome
-
-
 wait
+
+./run_parse_hmp2.sh
+
+# didn't realize this till I ran them all, but we only want the stool samples
+OUT=$PROCESSED_DATA/hmp2.fa.gz
+STOOL=$(grep Stool sample_info_for_greg.csv | cut -f4 -d, | awk '{print $1".fa.gz"}' | paste -s -d' ')
+cwd=`pwd`
+cd $HMP2_DATA
+cat $STOOL > $OUT
+cd $cwd
